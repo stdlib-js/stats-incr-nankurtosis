@@ -1,4 +1,4 @@
-/**
+/*
 * @license Apache-2.0
 *
 * Copyright (c) 2026 The Stdlib Authors.
@@ -16,19 +16,30 @@
 * limitations under the License.
 */
 
-'use strict';
+// TypeScript Version: 4.1
+
+/// <reference types="https://cdn.jsdelivr.net/gh/stdlib-js/types@main/index.d.ts"/>
 
 /**
-* Compute a corrected sample excess kurtosis incrementally, ignoring `NaN` values.
+* If provided a value, returns an updated corrected sample excess kurtosis; otherwise, returns the current corrected sample excess kurtosis, ignoring `NaN` values.
 *
-* @module @stdlib/stats-incr-nankurtosis
+* @param x - value
+* @returns corrected sample excess kurtosis
+*/
+type accumulator = ( x?: number ) => number | null;
+
+/**
+* Returns an accumulator function which incrementally computes a corrected sample excess kurtosis, ignoring `NaN` values.
+*
+* @returns accumulator function
 *
 * @example
-* var incrnankurtosis = require( '@stdlib/stats-incr-nankurtosis' );
-*
 * var accumulator = incrnankurtosis();
 *
-* var kurtosis = accumulator( 2.0 );
+* var kurtosis = accumulator();
+* // returns null
+*
+* kurtosis = accumulator( 2.0 );
 * // returns null
 *
 * kurtosis = accumulator( 2.0 );
@@ -43,12 +54,9 @@
 * kurtosis = accumulator( NaN );
 * // returns -6.0
 */
-
-// MODULES //
-
-var main = require( './main.js' );
+declare function incrnankurtosis(): accumulator;
 
 
 // EXPORTS //
 
-module.exports = main;
+export = incrnankurtosis;
